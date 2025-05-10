@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movies_app/screens/search_screen.dart';
 
 class MainScaffold extends StatelessWidget {
   final String title;
@@ -12,7 +13,6 @@ class MainScaffold extends StatelessWidget {
     required this.onCategorySelected,
   });
 
- 
   static final List<String> _categories = [
     'Popular',
     'Top Rated',
@@ -28,6 +28,17 @@ class MainScaffold extends StatelessWidget {
         title: Text(title),
         centerTitle: true,
         backgroundColor: Colors.black87,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const SearchScreen()),
+              );
+            },
+          ),
+        ],
       ),
       drawer: Drawer(
         child: ListView(
@@ -37,7 +48,6 @@ class MainScaffold extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.black87,
               ),
-
               child: Text(
                 'Movie Categories',
                 style: TextStyle(
@@ -47,22 +57,24 @@ class MainScaffold extends StatelessWidget {
               ),
             ),
             ListTile(
-              title: Text('Ma liste'),
-              leading: Icon(Icons.favorite),
-              onTap: () {
-                Navigator.pop(context); // Ferme le drawer
-                Navigator.pushNamed(context, '/mylist'); // Navigue vers l'écran Ma Liste
-            },
-            ),
-            ..._categories.map((category) => ListTile(
-              title: Text(category),
+              title: const Text('Ma liste'),
+              leading: const Icon(Icons.favorite),
               onTap: () {
                 Navigator.pop(context);
-                onCategorySelected(category);
+                Navigator.pushNamed(context, '/mylist');
               },
-              selected: title == category, 
-              selectedTileColor: Colors.grey.shade300,
-            )),
+            ),
+            ..._categories.map(
+              (category) => ListTile(
+                title: Text(category),
+                onTap: () {
+                  Navigator.pop(context);
+                  onCategorySelected(category);
+                },
+                selected: title == category,
+                selectedTileColor: Colors.grey.shade300,
+              ),
+            ),
           ],
         ),
       ),

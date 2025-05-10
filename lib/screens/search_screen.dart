@@ -8,10 +8,10 @@ class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
 
   @override
-  SearchScreenState createState() => SearchScreenState();  // Renommé ici
+  SearchScreenState createState() => SearchScreenState();
 }
 
-class SearchScreenState extends State<SearchScreen> {  // Renommé ici
+class SearchScreenState extends State<SearchScreen> { 
   final TextEditingController _controller = TextEditingController();
   final MovieService _movieService = MovieService();
   List<Movie> _searchResults = [];

@@ -18,7 +18,7 @@ class MyListScreen extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.clear),
             onPressed: () {
-              provider.clearMyList(); // Appeler la méthode pour vider la liste
+              provider.clearMyList();
             },
           ),
         ],

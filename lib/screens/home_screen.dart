@@ -4,6 +4,7 @@ import '../screens/movie_detail_screen.dart';
 import '../services/movie_service.dart';
 import '../widgets/mainScaffold.dart';
 import '../widgets/movie_card.dart';
+import '../screens/search_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
