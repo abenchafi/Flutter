@@ -12,13 +12,13 @@ class MainScaffold extends StatelessWidget {
     required this.onCategorySelected,
   });
 
-  // Alignement avec les catégories dans home_screen.dart
+ 
   static final List<String> _categories = [
     'Popular',
     'Top Rated',
     'Action',
     'Drama',
-    'Animation',  // Changé de 'Anime' à 'Animation' pour correspondre à home_screen.dart
+    'Animation',
   ];
 
   @override
@@ -51,7 +51,7 @@ class MainScaffold extends StatelessWidget {
                 Navigator.pop(context);
                 onCategorySelected(category);
               },
-              selected: title == category,  // Comparaison exacte du titre
+              selected: title == category, 
               selectedTileColor: Colors.grey.shade300,
             )),
           ],

@@ -33,8 +33,6 @@ class ActorMovieScreenState extends State<ActorMovieScreen> {
     try {
       _logger.info('Fetching movies for actorId: ${widget.actorId}');
       final movies = await _movieService.getPopularMoviesByActor(widget.actorId);
-      
-      // Vérifier si le widget est toujours monté
       if (!mounted) return;
       
       setState(() {
@@ -45,7 +43,6 @@ class ActorMovieScreenState extends State<ActorMovieScreen> {
         }
       });
     } catch (error) {
-      // Vérifier si le widget est toujours monté
       if (!mounted) return;
       
       setState(() {
@@ -54,7 +51,7 @@ class ActorMovieScreenState extends State<ActorMovieScreen> {
       });
       _logger.severe('Error fetching actor movies: $error');
       
-      // Afficher le SnackBar seulement si le widget est toujours monté
+      
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(_errorMessage!)),
       );
@@ -65,10 +62,10 @@ class ActorMovieScreenState extends State<ActorMovieScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('${widget.actorName}\'s Movies'), // Titre dynamique avec le nom de l'acteur
+        title: Text('${widget.actorName}\'s Movies'),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context), // Simplement revenir en arrière
+          onPressed: () => Navigator.pop(context),
         ),
       ),
       body: _isLoading
@@ -89,7 +86,6 @@ class ActorMovieScreenState extends State<ActorMovieScreen> {
                     return MovieCard(
                       movie: movie,
                       onTap: () {
-                        // Naviguer vers le détail du film
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (_) => MovieDetailScreen(movie: movie)),

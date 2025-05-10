@@ -5,6 +5,7 @@ import '../../utils/constants.dart';
 import '../models/actor.dart';
 
 class MovieService {
+  // Récupérer les crédits d'un film (acteurs)
   Future<List<Actor>> getMovieCredits(int movieId) async {
     final response = await http.get(
       Uri.parse(
@@ -22,6 +23,7 @@ class MovieService {
 }
 
 class ApiService {
+  // Récupérer les films populaires
   Future<List<Movie>> getPopularMovies() async {
     final response = await http.get(
       Uri.parse(

@@ -3,7 +3,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/movie.dart';
-import '../models/actor.dart';
 import '../utils/constants.dart';
 import 'package:logging/logging.dart';
 
@@ -53,21 +52,7 @@ class MovieService {
     }
   }
 
-  // Crédits d'un film (acteurs)
-  Future<List<Actor>> getMovieCredits(int movieId) async {
-    _logger.info('Fetching credits for movie: $movieId');
-    final response = await http.get(
-      Uri.parse("${Constants.baseUrl}/movie/$movieId/credits?api_key=${Constants.apiKey}"),
-    );
-
-    if (response.statusCode == 200) {
-      final data = json.decode(response.body)['cast'];
-      return (data as List).map((json) => Actor.fromJson(json)).toList();
-    } else {
-      _logger.severe('Error fetching movie credits: ${response.statusCode}');
-      throw Exception("Erreur lors de la récupération des crédits.");
-    }
-  }
+ 
 
   // Films avec un acteur spécifique
   Future<List<Movie>> getPopularMoviesByActor(int actorId) async {

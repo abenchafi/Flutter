@@ -1,5 +1,3 @@
-// lib/screens/home_screen.dart
-
 import 'package:flutter/material.dart';
 import '../models/movie.dart';
 import '../screens/movie_detail_screen.dart';
@@ -56,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
       });
     } catch (e) {
       setState(() => _isLoading = false);
-      // Erreur de chargement
+   
     }
   }
 

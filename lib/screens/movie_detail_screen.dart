@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_movies_app/screens/actor_movie_screen.dart';
 import '../models/movie.dart';
 import '../models/actor.dart';
-import '../services/movie_service.dart';
+import '../utils/api_service.dart';
 import '../providers/movie_provider.dart';
 import 'package:provider/provider.dart';
 
