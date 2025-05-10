@@ -20,6 +20,7 @@ class ActorMovieScreenState extends State<ActorMovieScreen> {
   final Logger _logger = Logger('ActorMovieScreen');
   List<Movie> _actorMovies = [];
   bool _isLoading = true;
+  String? _errorMessage;
 
   @override
   void initState() {
@@ -32,20 +33,30 @@ class ActorMovieScreenState extends State<ActorMovieScreen> {
     try {
       _logger.info('Fetching movies for actorId: ${widget.actorId}');
       final movies = await _movieService.getPopularMoviesByActor(widget.actorId);
-      if (movies.isEmpty) {
-        _logger.warning('No movies found for actor: ${widget.actorName}');
-      }
+      
+      // Vérifier si le widget est toujours monté
+      if (!mounted) return;
+      
       setState(() {
         _actorMovies = movies;
         _isLoading = false;
+        if (movies.isEmpty) {
+          _logger.warning('No movies found for actor: ${widget.actorName}');
+        }
       });
     } catch (error) {
+      // Vérifier si le widget est toujours monté
+      if (!mounted) return;
+      
       setState(() {
         _isLoading = false;
+        _errorMessage = 'Erreur lors du chargement des films';
       });
       _logger.severe('Error fetching actor movies: $error');
+      
+      // Afficher le SnackBar seulement si le widget est toujours monté
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Erreur lors du chargement des films')),
+        SnackBar(content: Text(_errorMessage!)),
       );
     }
   }

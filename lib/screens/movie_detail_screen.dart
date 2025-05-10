@@ -26,20 +26,25 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
     _loadMovieCredits();
   }
 
-  Future<void> _loadMovieCredits() async {
-    try {
-      final credits = await _movieService.getMovieCredits(widget.movie.id);
-      setState(() {
-        _actors = credits;
-        _isLoading = false;
-      });
-    } catch (error) {
-      setState(() => _isLoading = false);
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Erreur lors du chargement des acteurs')),
-      );
-    }
+Future<void> _loadMovieCredits() async {
+  try {
+    final credits = await _movieService.getMovieCredits(widget.movie.id);
+
+    if (!mounted) return;
+
+    setState(() {
+      _actors = credits;
+      _isLoading = false;
+    });
+  } catch (error) {
+    if (!mounted) return;
+
+    setState(() => _isLoading = false);
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Erreur lors du chargement des acteurs')),
+    );
   }
+}
 
   @override
   Widget build(BuildContext context) {
