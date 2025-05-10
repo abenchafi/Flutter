@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movies_app/providers/movie_provider.dart';
 import 'package:flutter_movies_app/screens/home_screen.dart';
+import 'package:flutter_movies_app/screens/my_list_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -19,6 +20,9 @@ class MyApp extends StatelessWidget {
         title: 'NexiFlix',
         theme: ThemeData.dark(),
         home: HomeScreen(),
+        routes: {
+          '/mylist': (context) => const MyListScreen(),
+        },
       ),
     );
   }

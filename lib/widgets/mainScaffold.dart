@@ -37,6 +37,7 @@ class MainScaffold extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.black87,
               ),
+
               child: Text(
                 'Movie Categories',
                 style: TextStyle(
@@ -44,6 +45,14 @@ class MainScaffold extends StatelessWidget {
                   fontSize: 24,
                 ),
               ),
+            ),
+            ListTile(
+              title: Text('Ma liste'),
+              leading: Icon(Icons.favorite),
+              onTap: () {
+                Navigator.pop(context); // Ferme le drawer
+                Navigator.pushNamed(context, '/mylist'); // Navigue vers l'écran Ma Liste
+            },
             ),
             ..._categories.map((category) => ListTile(
               title: Text(category),
